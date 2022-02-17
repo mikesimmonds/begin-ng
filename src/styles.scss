@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*
+Stylesheets that are required for the successful compilation of lazy-loaded modules
+are available in the /importables directory. To save having long relative imports in
+the component stylesheets, this directory is added to angular.json under
+```achitect.build.options.stylePreprocessorOptions.includePaths :["src/scss/importable"]```
+and are added on a per-stylesheet basis using @import "<filename>"
+See: https://dev.to/mikesimmonds/organising-scss-in-angular-188e
+*/
+@import "src/scss/reset";
+@import "src/scss/typography.scss";
+@import "src/scss/fluid-fonts.scss";
+@import "src/scss/base";

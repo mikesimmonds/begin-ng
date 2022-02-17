@@ -1,0 +1,40 @@
+/*
+ Base font size:
+ This sets the font-size of the <html> element as required.
+ This means all rem an em units will scale based on this throughout the application.
+ This implementation ignores the browser default font size.
+
+*/
+
+@use "sass:math";
+
+$min_width: 320px;
+$max_width: 1400px;
+$min_font_size: 16px;
+$max_font_size: 20px;
+
+@mixin fluid-type() {
+  $u1: unit($min_width);
+  $u2: unit($max-width);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min_width) {
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min_width}) / #{strip-unit($max-width - $min_width)})
+        );
+      }
+      @media screen and (min-width: $max-width) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+@function strip-unit($value) {
+  @return math.div($value, $value * 0 + 1);
+}

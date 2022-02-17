@@ -1,0 +1,31 @@
+:root {
+  --primary: #01929f;
+  --secondary: #013643;
+  --tertiary: #74d4dc;
+  --gray-light: #c2c0c2;
+  --gray-mid: #707070;
+  --gray-dark: #212529;
+  --white: #fff;
+  --black: #000;
+  --background: #fff;
+
+  // unused
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+
+  //fonts
+  --font-family: "Lato", Roboto, "Helvetica Neue", sans-serif;
+
+  //Layout
+  --header-height: 90px;
+
+  // fluid-fonts
+  $min_width: 320px;
+  $max_width: 1400px;
+  $min_font: 16px;
+  $max_font: 20px;
+}

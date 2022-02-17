@@ -1,0 +1,50 @@
+@import "breakpoints";
+
+:host {
+  --content-width: 90%;
+  @include wider-than("mobile") {
+    --content-width: 540px;
+  }
+  @include wider-than("tablet") {
+    --content-width: 720px;
+  }
+
+  @include wider-than("laptop") {
+    --content-width: 960px;
+  }
+
+  @include wider-than("desktop") {
+    --content-width: 1140px;
+  }
+
+  width: var(--content-width);
+  max-width: var(--content-width);
+  margin-right: auto;
+  margin-left: auto;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  .content {
+    margin-top: var(--header-height);
+    flex: 1 0 100%;
+  }
+  bgng-bottom-nav {
+    flex: 0 0 100%;
+  }
+
+  // If you add position: fixed to the header it is best to add the css below to the body of the page.
+  // When the page is scrolled, the top will be correctly in line with the ottom of the nav bar
+  // body:target {
+  //   scroll-margin-top: var(--header-height);
+  // }
+
+  bgng-top-nav {
+    position: fixed;
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: var(--content-width);
+    background: var(--background);
+    height: var(--header-height);
+  }
+}
