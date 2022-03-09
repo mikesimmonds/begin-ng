@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   template: `
     <div>
-      <h1>Page not found</h1>
-      <a [routerLink]="'/'" bgngArrowLink>Return to hompage</a>
+      <h1>four-oh-four! That page is not found</h1>
+      <a [routerLink]="'/'">Return to hompage</a>
     </div>
   `,
   styles: [
@@ -22,6 +22,8 @@ import { Component } from '@angular/core';
         padding: 5% 10%;
         border: 1px solid var(--secondary);
         text-align: center;
+        pointer-events: none;
+        background: white;
       }
     `,
   ],

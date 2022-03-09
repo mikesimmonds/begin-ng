@@ -1,0 +1,38 @@
+<ng-container [ngSwitch]="accountState">
+  <ng-template ngSwitchCase="inactive">
+    <section class="introduction">
+      <h3>activerende...</h3>
+    </section>
+  </ng-template>
+
+  <ng-template ngSwitchCase="activated">
+    <section class="introduction">
+      <h3>Je account bij SharePeople is nu actief</h3>
+      <p>Je emailadres is geverifieerd. Je kan nu je MijnOmgeving in.</p>
+    </section>
+    <!--<section class="identification">-->
+    <!--<h4>Identificatie</h4>-->
+    <!--<p>-->
+    <!--Om uitbetalingen te doen, moeten we volgens wettelijke regeling jou identificeren met een paspoort of ID document.-->
+    <!--Doe dit in Mijn SharePeople op een moment dat jou schikt.-->
+    <!--</p>-->
+    <!--</section>-->
+    <footer>
+      <button [bgng-button] routerLink="../new-password">
+        naar Mijn SharePeople
+      </button>
+    </footer>
+  </ng-template>
+
+  <ng-template ngSwitchCase="code-expired">
+    <section class="introduction">
+      <h3>The code has expired.</h3>
+    </section>
+  </ng-template>
+
+  <ng-template ngSwitchCase="code-invalid">
+    <section class="introduction">
+      <h3>Deze activatiecode is niet geldig.</h3>
+    </section>
+  </ng-template>
+</ng-container>

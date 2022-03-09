@@ -1,0 +1,29 @@
+<section class="introduction">
+  <h1>Login</h1>
+</section>
+
+<section class="login-form">
+  <form [formGroup]="loginForm" #form="ngForm">
+    <bgng-input-wrapper
+      label="e-mailadres"
+      [error]="form.submitted ? loginForm.get('email').errors : null"
+    >
+      <input type="email" formControlName="email" />
+    </bgng-input-wrapper>
+    <div class="password-wrapper">
+      <bgng-input-wrapper
+        label="wachtwoord"
+        [error]="form.submitted ? loginForm.get('password').errors : null"
+      >
+        <input type="password" formControlName="password" />
+      </bgng-input-wrapper>
+      <span class="forgot-password" [routerLink]="'../forgot-password'"
+        >wachtwoord vergeten?</span
+      >
+    </div>
+    <button [bgng-button] (click)="submit()">log in</button>
+  </form>
+  <p class="what-is-link" *ngIf="displayError">
+    verkeerde gebruikersnaam of wachtwoord
+  </p>
+</section>

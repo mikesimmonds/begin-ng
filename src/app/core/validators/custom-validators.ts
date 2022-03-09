@@ -1,4 +1,4 @@
-import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export class CustomValidators {
   static email(control: AbstractControl): ValidationErrors | null {
@@ -6,7 +6,8 @@ export class CustomValidators {
       return null;
     }
     const email = control.value;
-    const regex: RegExp = /[_A-Za-z0-9-+]+(\.[_A-Za-z0-9-+]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})/;
+    const regex: RegExp =
+      /[_A-Za-z0-9-+]+(\.[_A-Za-z0-9-+]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})/;
     if (regex.test(email)) {
       return null;
     } else {
@@ -40,12 +41,55 @@ export class CustomValidators {
     }
   }
 
-
   static valueIsTrue(control: AbstractControl): ValidationErrors | null {
-    return control.value === true ? null : {isNotTrue: true};
+    return control.value === true ? null : { isNotTrue: true };
   }
 
-  static MatchFields( firstControlName, secondControlName): ValidationErrors | null {
+  static minTimeBetween(
+    before: string | AbstractControl,
+    after: string | AbstractControl,
+    minTimeGapMs: number
+  ): ValidationErrors | null {
+    return (control: AbstractControl) => {
+      const beforeControl =
+        before instanceof AbstractControl ? before : control.get(before);
+      const afterControl =
+        after instanceof AbstractControl ? after : control.get(after);
+
+      const beforeValue = beforeControl.value;
+      const afterValue = afterControl.value;
+
+      if (!beforeValue || !afterValue) {
+        // If either control has no value (required is responsibility of the individual control)
+        return null;
+      }
+
+      const beforeDate = marshallToDate(beforeValue);
+      const afterDate = marshallToDate(afterValue);
+
+      if (!(beforeDate instanceof Date && afterDate instanceof Date)) {
+        throw new Error(
+          'Both control values must be of type (Date | string) and convertable a Date object. see above'
+        );
+      }
+
+      if (beforeDate.getTime() + minTimeGapMs < afterDate.getTime()) {
+        return { tooSoon: true };
+      } else {
+        return null;
+      }
+    };
+
+    function marshallToDate(date: Date | string): Date {
+      if (date instanceof Date) return date;
+      return new Date(date);
+    }
+  }
+
+  static MatchFields(
+    firstControlName: string,
+    secondControlName: string
+  ): ValidationErrors | null {
     return (AC: AbstractControl) => {
       const firstControlValue = AC.get(firstControlName).value;
       const secondControlValue = AC.get(secondControlName).value;
@@ -69,18 +113,17 @@ export class CustomValidators {
         return null;
       }
 
-      if ( year > maxYears || year < minYears ) {
-          return {
-            yearRangeError: {
-              given: year,
-              max: maxYears,
-              min: minYears
-            }
-          };
-        } else {
-          return null;
-        }
+      if (year > maxYears || year < minYears) {
+        return {
+          yearRangeError: {
+            given: year,
+            max: maxYears,
+            min: minYears,
+          },
+        };
+      } else {
+        return null;
+      }
     };
   }
-
 }

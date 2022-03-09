@@ -1,0 +1,22 @@
+@import "variables";
+
+section.introduction {
+  margin-top: 40px;
+  p {
+    margin-top: 8px;
+  }
+}
+
+section.identification {
+  margin-top: 40px;
+  background-color: $color-grey-300;
+  padding: 24px;
+  @include respond-to(mobile) {
+    width: calc(100%);
+    margin-left: calc(-1 * var(--page-padding));
+    padding: var(--page-padding);
+  }
+  h4 {
+    margin-top: 11px;
+  }
+}

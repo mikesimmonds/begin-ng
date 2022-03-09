@@ -1,0 +1,21 @@
+@import "src/assets/global-scss/variables";
+
+.password-wrapper {
+  position: relative;
+}
+.forgot-password {
+  @include text-normal();
+  color: $color-primary-base-500;
+  position: absolute;
+  top: 0;
+  right:0;
+  cursor: pointer;
+}
+
+.what-is-link {
+  @include text-normal();
+  color: darkred;
+  display: block;
+  margin-top: 24px;
+  text-align: center;
+}
