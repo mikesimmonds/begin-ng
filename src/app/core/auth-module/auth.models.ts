@@ -1,3 +1,5 @@
+// TODO: rename this file to auth.interfaces.ts
+
 export interface AuthCredentialsResponse {
   access_token: string;
   expires_in: number;
