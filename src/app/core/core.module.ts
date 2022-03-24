@@ -8,8 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { HeadersInterceptor } from './headers.interceptor';
-import { BeginToastrModule } from './begin-toastr/begin-toastr.module';
+import { BeginToastrModule } from '../overlays/begin-toastr/begin-toastr.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { OverlaysModule } from '../overlays/overlays.module';
 
 @NgModule({
   declarations: [PageNotFoundComponent],
@@ -22,7 +23,7 @@ import { BrowserModule } from '@angular/platform-browser';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    BeginToastrModule,
+    OverlaysModule,
   ],
   providers: [
     {
@@ -36,7 +37,7 @@ import { BrowserModule } from '@angular/platform-browser';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    BeginToastrModule,
+    OverlaysModule,
   ],
 })
 export class CoreModule {}
