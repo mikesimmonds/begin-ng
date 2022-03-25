@@ -5,11 +5,16 @@ import { PageNotFoundComponent } from './core/page-not-found.component';
 import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', redirectTo: '/topic/list', pathMatch: 'full' },
   {
     path: 'layout',
     component: AppLayoutComponent,
     children: [{ path: ':id', component: AppComponent }],
+  },
+  {
+    path: 'topic',
+    loadChildren: () =>
+      import('./topic/topic.module').then((m) => m.TopicModule),
   },
   { path: '**', component: PageNotFoundComponent },
 ];

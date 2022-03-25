@@ -3,6 +3,11 @@
 A layout module is a group of components that wrap the content in the page and poition the components in a consistent way.
 Its good to keep this as lean as possible. Adding non-layout logic and services to it can cause it to bloat quickly.
 
+## How to use a layout component or how to find which layout your compo is using.
+
+Nota bene:
+Is is better for all layouts just to have a <ng-content> tag and then project the router-link if required. Would be more consistent than having router-link in some or all laout components.
+
 A layout component will either contain a <router-link> or a <ng-content> element to diplay content in each if its sections.
 for example:
 ```html

@@ -1,0 +1,10 @@
+<ul>
+  <li *ngFor="let category of (topicsData$ | async)?.categories">
+    {{ category.name }}
+    <ul>
+      <li *ngFor="let topic of category.topics">
+        {{ topic.name }}
+      </li>
+    </ul>
+  </li>
+</ul>
