@@ -1,0 +1,14 @@
+<h1>Search for "{{ searchTerm | async }}"</h1>
+<ng-container *ngIf="results$ | async as results; else loading">
+  <p class="results-count">{{ results.length }} search results</p>
+  <div class="search-item-container">
+    <cesg-search-item
+      *ngFor="let result of results"
+      [result]="result"
+    ></cesg-search-item>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

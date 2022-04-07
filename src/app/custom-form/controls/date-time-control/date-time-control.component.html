@@ -1,0 +1,33 @@
+<div class="field-group--inline">
+  <p>
+    <label for="startDate">Workshop occurence date</label>
+
+    <input
+      id="startDate"
+      [matDatepicker]="startDatePicker"
+      (focus)="startDatePicker.open()"
+      (dateInput)="checkAndUpdate()"
+      [(ngModel)]="dateValue"
+      #startDateControl
+    />
+    <mat-datepicker
+      #startDatePicker
+      (closed)="startDateControl.blur()"
+    ></mat-datepicker>
+  </p>
+  <p>
+    <label for="appt">Time</label>
+
+    <input
+      type="time"
+      id="appt"
+      name="appt"
+      min="09:00"
+      max="18:00"
+      required
+      #timeControl
+      [(ngModel)]="timeValue"
+      (change)="checkAndUpdate()"
+    />
+  </p>
+</div>

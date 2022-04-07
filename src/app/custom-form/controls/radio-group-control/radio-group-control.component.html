@@ -1,0 +1,4 @@
+  <ng-container *ngFor="let option of options; let i = index">
+    <input id="{{idPrefix}}check{{i}}" type="radio" [value]="option.value" [ngModel]="_selectedValue" (ngModelChange)="radioOptionChanged($event)" [name]="idPrefix+'-option'">
+    <label for="{{idPrefix}}check{{i}}">{{options[i].label}}</label>
+  </ng-container>

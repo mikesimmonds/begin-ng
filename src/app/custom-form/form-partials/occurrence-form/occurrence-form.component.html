@@ -1,0 +1,40 @@
+<form [formGroup]="occurrenceForm">
+  <app-date-time-control formControlName="startDate"></app-date-time-control>
+  <div class="field-group">
+    <p>
+      <label for="purchaseOrder">PO number</label>
+      <input type="string" id="purchaseOrder" formControlName="purchaseOrder" />
+      <small
+        *ngIf="occurrenceForm.get('purchaseOrder').hasError('cannotInclude')"
+      >
+        This purchase order number is already used
+      </small>
+    </p>
+    <p>
+      <label for="length">Workshop capacity </label>
+      <input
+        type="number"
+        id="capacity"
+        formControlName="capacity"
+        min="1"
+        step="1"
+      />
+    </p>
+  </div>
+  <p *ngIf="isAdmin">
+    <label for="startDate">Payment date</label>
+
+    <input
+      id="startDate"
+      [matDatepicker]="startDatePicker"
+      (focus)="startDatePicker.open()"
+      formControlName="paymentDate"
+      #startDateControl
+    />
+    <mat-datepicker
+      #startDatePicker
+      (closed)="startDateControl.blur()"
+    ></mat-datepicker>
+  </p>
+  <p></p>
+</form>

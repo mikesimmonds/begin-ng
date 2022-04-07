@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  position: relative;
+}
+input {
+  border: none;
+  border-bottom: 1px solid var(--gray-mid);
+  padding-bottom: 6px;
+  &::placeholder {
+    color: var(--primary);
+    filter: contrast(50%);
+  }
+}
+button {
+  display: inline;
+  position: absolute;
+  right: 0;
+  height: 22px;
+  width: 22px;
+}
+svg {
+  fill: var(--black);
+}

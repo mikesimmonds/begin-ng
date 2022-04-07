@@ -1,0 +1,37 @@
+<div *ngIf="!hideUnits?.includes('days')">
+  <label for="duration-days">Days</label>
+  <select
+    name="duration-days"
+    id="duration-days"
+    [(ngModel)]="daysValue"
+    (change)="onChange()"
+  >
+    <option *ngFor="let day of daysAvailable" [value]="day">{{ day }}</option>
+  </select>
+</div>
+
+<div *ngIf="!hideUnits?.includes('hours')">
+  <label for="duration-hours">hours</label>
+  <select
+    name="duration-hours"
+    id="duration-hours"
+    [(ngModel)]="hoursValue"
+    (change)="onChange()"
+  >
+    <option *ngFor="let hour of hoursAvailable" [value]="hour">
+      {{ hour }}
+    </option>
+  </select>
+</div>
+
+<div *ngIf="!hideUnits?.includes('mins')">
+  <label for="duration-mins">mins</label>
+  <select
+    name="duration-mins"
+    id="duration-mins"
+    [(ngModel)]="minsValue"
+    (change)="onChange()"
+  >
+    <option *ngFor="let min of minsAvailable" [value]="min">{{ min }}</option>
+  </select>
+</div>

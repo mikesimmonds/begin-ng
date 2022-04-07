@@ -1,0 +1,12 @@
+<div *ngFor="let option of options; let i = index">
+  <input
+    id="{{ idPrefix }}check{{ i }}"
+    type="checkbox"
+    [checked]="checked(option.value)"
+    [value]="option.value"
+    [disabled]="disabled"
+    (click)="checkboxClick(option.value)"
+  />
+  <label for="{{ idPrefix }}check{{ i }}">{{ option.label }}</label>
+  <p *ngIf="option.help" class="form-help">{{ option.help }}</p>
+</div>

@@ -1,0 +1,5 @@
+<ng-container *ngIf="result">
+  <h2>{{ result.title }}</h2>
+  <p>{{ result.intro }}</p>
+  <a cesgArrowLink [routerLink]="['/topic', result.slug]">Read topic</a>
+</ng-container>

@@ -1,0 +1,25 @@
+@import "mixins";
+
+:host {
+  display: block;
+  max-width: 900px;
+}
+
+h2 {
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid var(--gray-mid);
+  overflow: hidden;
+  @include line-clamp(2);
+}
+p {
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 0.8em;
+  padding-right: 0.8em;
+  &:nth-child(odd) {
+    margin-left: 1em;
+  }
+}
