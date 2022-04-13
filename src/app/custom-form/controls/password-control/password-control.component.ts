@@ -11,15 +11,17 @@ import {
 } from '@angular/forms';
 
 function matchPasswords(AC: AbstractControl): ValidationErrors | null {
-  const firstControlValue = AC.get('password').value;
-  const secondControlValue = AC.get('confirmPassword').value;
+  if (!AC) return null;
+  const firstControlValue = AC.get('password')?.value;
+  const secondControlValue = AC.get('confirmPassword')?.value;
   if (!secondControlValue) {
     return null;
-  }
-  if (firstControlValue !== secondControlValue) {
-    return { unmatchedPasswords: true };
   } else {
-    return null;
+    if (firstControlValue !== secondControlValue) {
+      return { unmatchedPasswords: true };
+    } else {
+      return null;
+    }
   }
 }
 
@@ -41,7 +43,7 @@ function matchPasswords(AC: AbstractControl): ValidationErrors | null {
   ],
 })
 export class PasswordControlComponent implements ControlValueAccessor, OnInit {
-  @Input() options: {
+  @Input() options!: {
     value: number | string;
     pwdLabel: string;
     confirmLabel: string;
@@ -50,11 +52,11 @@ export class PasswordControlComponent implements ControlValueAccessor, OnInit {
     1000 + Math.random() * 9000
   ).toString();
 
-  passwordForm: FormGroup;
+  passwordForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
 
-  propagateChange = (_: string) => {}; // change any to formControl data type
+  propagateChange = (_: string | null) => {}; // change any to formControl data type
   propagateTouched = (_: boolean) => {}; // inform parent form when controls are touched (onTouched = true)
 
   ngOnInit(): void {
@@ -75,14 +77,15 @@ export class PasswordControlComponent implements ControlValueAccessor, OnInit {
   // We do this so that the validation on the whole form is visible to the user in the conformPassword field
   setConfirmStatusToFromStatus() {
     this.passwordForm.statusChanges.subscribe((status) => {
+      const confirmPwdCtrl = this.passwordForm?.get('confirmPassword');
+      if (!confirmPwdCtrl) return;
       if (status === 'VALID') {
-        this.passwordForm
-          .get('confirmPassword')
-          .setErrors(null, { emitEvent: false });
+        confirmPwdCtrl.setErrors(null, { emitEvent: false });
       } else {
-        this.passwordForm
-          .get('confirmPassword')
-          .setErrors({ unmatchedPasswords: true }, { emitEvent: false });
+        confirmPwdCtrl.setErrors(
+          { unmatchedPasswords: true },
+          { emitEvent: false }
+        );
       }
     });
   }
@@ -91,22 +94,29 @@ export class PasswordControlComponent implements ControlValueAccessor, OnInit {
     this.passwordForm.setValue({ password: value, confirmPassword: null });
   }
 
-  registerOnTouched(fn) {
+  registerOnTouched(fn: any) {
     this.propagateTouched = fn;
   }
 
-  registerOnChange(fn) {
+  registerOnChange(fn: any) {
     this.propagateChange = fn;
   }
 
-  onChange(value) {
-    this.propagateChange(value);
+  onChange(value: any) {
+    this.passwordForm.updateValueAndValidity();
+    if (this.passwordForm.valid) {
+      this.propagateChange(value);
+    } else {
+      this.propagateChange(null);
+    }
   }
 
   onBlur() {
     this.propagateTouched(true);
-    this.passwordForm.updateValueAndValidity();
-    this.onChange(this.passwordForm.get('password'));
+    this.propagateTouched(true);
+    const pwdCtrl = this.passwordForm.get('password');
+    if (!pwdCtrl) return;
+    this.onChange(pwdCtrl.value);
   }
 
   setErrorsOnAllControls(errors: ValidationErrors | null) {
@@ -119,9 +129,10 @@ export class PasswordControlComponent implements ControlValueAccessor, OnInit {
 
   // This fn and its provider turn this method into a validation for this formControl. It is fired when the registerOnChange() callback is called. Note the customFormControl, that this component creates is invalid, but it does not render the internal form invalid without manuallt setting the errors.
   validate(AC: AbstractControl): ValidationErrors | null {
-    const firstControlValue = this.passwordForm.get('password').value;
-    const secondControlValue = this.passwordForm.get('confirmPassword').value;
-    if (firstControlValue !== secondControlValue) {
+    const firstControlValue = this.passwordForm.get('password');
+    const secondControlValue = this.passwordForm.get('confirmPassword');
+    if (!firstControlValue || !secondControlValue) return null;
+    if (firstControlValue.value !== secondControlValue.value) {
       return { unmatchedPasswords: true };
     } else {
       this.setErrorsOnAllControls(null);
