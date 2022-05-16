@@ -2,6 +2,8 @@ import { AfterViewInit, Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 /**
+
+THIS IS ONLY FOR GA, not more modern GTM
  * This service allows listens to navigation changes and sends a pageview to google analytics as set up in index.html
  * As the standard Google Analytics script that is pasted into the header of the index.html page relies on page changes
  * to trigger the sending of a pageview. Angular is an SPA and does not navigate pages in the usual way. Therefore we
