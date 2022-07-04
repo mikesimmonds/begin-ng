@@ -44,9 +44,9 @@ function matchPasswords(AC: AbstractControl): ValidationErrors | null {
 })
 export class PasswordControlComponent implements ControlValueAccessor, OnInit {
   @Input() options!: {
-    value: number | string;
-    pwdLabel: string;
-    confirmLabel: string;
+    value?: number | string;
+    pwdLabel?: string;
+    confirmLabel?: string;
   };
   @Input() idPrefix: string = Math.floor(
     1000 + Math.random() * 9000

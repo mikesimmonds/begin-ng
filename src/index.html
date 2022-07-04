@@ -8,6 +8,44 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
-    <bgng-root></bgng-root>
+    <bgng-root>
+      <style>
+        .splash-screen {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          pointer-events: none;
+        }
+        .dot {
+          animation: 1s ease-in 0s infinite alternate fade-dot;
+        }
+        .dot-two {
+          animation-delay: 0.3s;
+        }
+        .dot-three {
+          animation-delay: 0.6s;
+        }
+        @keyframes fade-dot {
+          from {
+            opacity: 0%;
+          }
+          to {
+            opacity: 100%;
+          }
+        }
+      </style>
+      <div class="splash-screen">
+        <h1>Begin-ng</h1>
+        <p>
+          <span>loading</span>
+          <span class="dot dot-one">.</span>
+          <span class="dot dot-two">.</span>
+          <span class="dot dot-three">.</span>
+        </p>
+      </div>
+    </bgng-root>
   </body>
 </html>
