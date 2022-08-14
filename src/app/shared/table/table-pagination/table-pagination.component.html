@@ -1,0 +1,63 @@
+<!-- <nav *ngIf="totalPages >= 2" class="pagination"> -->
+<nav *ngIf="totalPages >= 0" class="pagination">
+
+  <div class="results-select">
+    <select (change)="setPageSize(+pageSize.value)" #pageSize>
+      <option
+      *ngFor="let num of pageSizeOptions"
+      [value]="num"
+      [selected]="+pageSizeOption.value == pagedResult.pageSize"
+      #pageSizeOption
+      >{{num}}</option>
+    </select>
+  </div>
+
+  <div class="page-selectors" *ngIf="totalResults > 0">
+    <!-- First page # -->
+    <ng-container *ngIf="!visiblePageSelectors.includes(1)">
+      <button
+        [class.active]="pagedResult.pageNumber === 1"
+        aria-label="first page"
+        rel="first"
+        (click)="gotoPage(1)"
+      >1</button>
+      <span *ngIf="!visiblePageSelectors.includes(2)">...</span>
+    </ng-container>
+    <!-- Contextual pages -->
+    <button
+    *ngFor="let pageSelector of visiblePageSelectors"
+    (click)="gotoPage(pageSelector)"
+    [attr.aria-current]="pagedResult.pageNumber == pageSelector ? 'page' : null"
+    class="button--pagination"
+    [class.active]="pageSelector === pagedResult.pageNumber"
+    >{{ pageSelector }}</button>
+    <!-- Last page # -->
+    <ng-container *ngIf="!visiblePageSelectors.includes(totalPages)">
+      <span *ngIf="!visiblePageSelectors.includes(totalPages - 1)">...</span>
+      <button
+        [class.active]="pagedResult.pageNumber === totalPages"
+        aria-label="last page"
+        rel="last"
+        (click)="gotoPage(totalPages)"
+      >{{totalPages}}</button>
+    </ng-container>
+  </div>
+
+  <!-- Prev/Next buttons -->
+  <div class="prev-next">
+    <button
+    [attr.disabled]="pagedResult.pageNumber > 1 ? null : ''"
+    aria-label="previous page"
+    rel="prev"
+    (click)="gotoPage(pagedResult.pageNumber - 1)"
+  >Prev.</button>
+  <button
+    [attr.disabled]="pagedResult.pageNumber < totalPages ? null : ''" aria-label="next page"
+    rel="next"
+    (click)="gotoPage(pagedResult.pageNumber + 1)"
+  >Next</button>
+  </div>
+
+
+
+</nav>

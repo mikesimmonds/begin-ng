@@ -86,17 +86,21 @@ export class CustomValidators {
     }
   }
 
-  static MatchFields(
+  static matchFields(
     firstControlName: string,
     secondControlName: string
   ): ValidationErrors | null {
     return (AC: AbstractControl) => {
+      console.log('running')
       const firstControlValue = AC.get(firstControlName).value;
       const secondControlValue = AC.get(secondControlName).value;
 
       if (firstControlValue !== secondControlValue) {
-        AC.get(secondControlName).setErrors({ matchFields: true });
+        // NB: Sets error on second control
+        AC.get(secondControlName).setErrors({ unmatchedFields: true });
+        return { unmatchedFields: true };
       } else {
+        AC.get(secondControlName).setErrors(null);
         return null;
       }
     };
