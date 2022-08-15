@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { OverlaysModule } from './overlays/overlays.module';
+import { OverlaysModule } from './shared/overlays/overlays.module';
 
 @NgModule({
   declarations: [AppComponent],

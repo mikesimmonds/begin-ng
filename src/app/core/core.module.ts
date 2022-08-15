@@ -8,9 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { HeadersInterceptor } from './headers.interceptor';
-import { BeginToastrModule } from '../overlays/begin-toastr/begin-toastr.module';
+import { BeginToastrModule } from '../shared/overlays/begin-toastr/begin-toastr.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { OverlaysModule } from '../overlays/overlays.module';
+import { OverlaysModule } from '../shared/overlays/overlays.module';
 
 @NgModule({
   declarations: [PageNotFoundComponent],

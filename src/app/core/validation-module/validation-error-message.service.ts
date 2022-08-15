@@ -57,7 +57,7 @@ export class ValidationErrorMessageService {
   renderer2;
 
   // Service config
-  invalidClassName: string = 'flow-invalid';
+  invalidClassName: string = 'bgng-invalid';
 
   constructor(rendererFactory2: RendererFactory2) {
     // https://github.com/angular/angular/issues/17824#issuecomment-353239017
