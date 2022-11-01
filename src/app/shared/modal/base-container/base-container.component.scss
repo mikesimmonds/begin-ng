@@ -1,0 +1,61 @@
+.modal {
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // z-index: 9999;
+  // // un-flex this anyway, or it plays hell with IE11...
+  // // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // width: 100%;
+  // height: 100%;
+
+  // @media (min-width: $breakpoint-tablets) {
+  //   justify-content: flex-end;
+  // }
+
+  // &::before {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: rgba($brand-1, 0.7);
+  //   content: '';
+  // }
+
+  >.inner {
+    position: relative;
+    width: 100%;
+    // min-height: 93%; // Are all modals going to be tall?
+    max-width: 700px;
+    max-height: 99vh;
+    padding: 1em;
+    margin: 1em;
+    background: white;
+    border-radius: 2.5em;
+
+    // @media (min-width: $breakpoint-tablets) {
+    //   height: auto;
+    //   max-height: 90vh;
+    //   padding: 3em;
+    //   margin: 3em;
+    // }
+  }
+
+  .scrollbar {
+    max-height: calc(90vh - 6em);
+  }
+
+  .close {
+    position: absolute;
+    top: -1.5em;
+    right: -2em;
+
+    &::before {
+      // @include shadow--dash;
+      // display: block; // IE11 fix
+    }
+  }
+
+}

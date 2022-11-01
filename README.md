@@ -2,7 +2,7 @@
 
 Todo:
 - Add the search module 
-
+- Consider using lucide open source icons as they are free and high quality
 - Consider a moduel where people can create workshops, a  bit like ey tpd. its an excuse for a complex form.
 - 
 

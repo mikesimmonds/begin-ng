@@ -1,0 +1,15 @@
+<div class="inner">
+  <div class="scrollbar">
+    <h1>{{data.title}}</h1>
+    <p> {{data.message}}</p>
+    <input type="text" [placeholder]="data.placeholder" [(ngModel)]="inputText">
+    <div class="action-container">
+      <p class="button--3" (click)="dialogRef.close(inputText)">
+        {{data.trueBtnText}}
+      </p>
+      <p class="button--3" (click)="dialogRef.close(null)">
+        {{data.falseBtnText}}
+      </p>
+    </div>
+  </div>
+</div>

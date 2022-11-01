@@ -1,0 +1,25 @@
+// @use '../modal-default'; into each dialog component for basic modal styling
+
+.inner {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  max-height: 99vh;
+  min-width: 400px;
+  padding: 2em;
+  margin: 1em;
+  background: white;
+  border-radius: 2.5em;
+  font-size: 125%;
+}
+.scrollbar {
+  max-height: calc(90vh - 6em);
+}
+.action-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+  .button--3 {
+    min-width: 170px;
+  }
+}
