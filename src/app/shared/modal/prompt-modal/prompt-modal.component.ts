@@ -24,8 +24,6 @@ export class PromptModalComponent {
   };
   data: PromptModalOptions;
 
-  inputText: string;
-
   constructor(
     public dialogRef: DialogRef<string, PromptModalComponent>,
     @Inject(DIALOG_DATA) promptModalOptions:

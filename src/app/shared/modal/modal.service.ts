@@ -4,7 +4,7 @@ import {
   DialogConfig,
   DialogRef,
 } from '@angular/cdk/dialog';
-import { ComponentType } from '@angular/cdk/portal';
+import { BasePortalOutlet, ComponentType } from '@angular/cdk/portal';
 import { Injectable, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
@@ -21,7 +21,7 @@ import { PromptModalComponent } from './prompt-modal/prompt-modal.component';
   providedIn: 'root',
 })
 export class ModalService {
-  baseConfig: DialogConfig = {
+  baseConfig: DialogConfig<unknown, any> = {
     panelClass: ['modal-base'], // Must be in global scope :(
   };
 
@@ -38,7 +38,7 @@ export class ModalService {
  */
 open(
     modal: ComponentType<any> | TemplateRef<any>,
-    configOverride?: DialogConfig
+    configOverride: DialogConfig<unknown, any>
   ): DialogRef {
     const config = { ...this.baseConfig, ...configOverride };
     return this.ngDialog.open(modal, config);
@@ -64,13 +64,13 @@ open(
    * @param {string} message - the message to display in alert.
    * @memberof ModalService
    */
-  confirm(data: ConfirmModalOptions): Observable<boolean | null> {
+  confirm(data: ConfirmModalOptions): Observable<boolean | null | undefined> {
     const config = { ...this.baseConfig, ...{ data: data } };
     return this.ngDialog.open<boolean | null>(ConfirmModalComponent, config)
       .closed;
   }
 
-  prompt(data: ConfirmModalOptions): Observable<string | null> {
+  prompt(data: ConfirmModalOptions): Observable<string | null | undefined> {
     const config = { ...this.baseConfig, ...{ data: data } };
     return this.ngDialog.open<string | null>(PromptModalComponent, config)
       .closed;
