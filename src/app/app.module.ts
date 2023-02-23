@@ -6,10 +6,11 @@ import { CoreModule } from './core/core.module';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { OverlaysModule } from './shared/overlays/overlays.module';
+import { ExampleModule } from './example/example.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [CommonModule, RouterModule, CoreModule, LayoutModule, DashboardModule, OverlaysModule],
+  imports: [CommonModule, RouterModule, CoreModule, LayoutModule, DashboardModule, OverlaysModule, ExampleModule],
   providers: [],
   bootstrap: [AppComponent],
 })

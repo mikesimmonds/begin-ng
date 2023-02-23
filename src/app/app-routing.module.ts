@@ -1,20 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './core/page-not-found.component';
-import { AppLayoutComponent } from './layout/app-layout/app-layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/topic/list', pathMatch: 'full' },
+  { path: '', redirectTo: '/example', pathMatch: 'full' },
   {
-    path: 'layout',
-    component: AppLayoutComponent,
-    children: [{ path: ':id', component: AppComponent }],
-  },
-  {
-    path: 'topic',
+    path: 'example',
     loadChildren: () =>
-      import('./topic/topic.module').then((m) => m.TopicModule),
+      import('./example/example.module').then((m) => m.ExampleModule),
   },
   { path: '**', component: PageNotFoundComponent },
 ];

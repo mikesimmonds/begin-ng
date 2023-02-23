@@ -1,5 +1,10 @@
 These modals are created using the Angular CDK Dialog. 
 
+Requirements
+- Angular CDK (>=14) `npm i @angular/cdk`
+  
+Angular Material is not required.
+
 We have a service (modal.service) that:
 - Abstracts out the reliance on the Angular CDK
 - Handles the management of standard dialogs (alert/prompt/confirm)
