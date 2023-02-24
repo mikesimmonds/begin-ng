@@ -8,8 +8,18 @@ export interface AlertModalOptions {
 }
 
 @Component({
-  templateUrl: './alert-modal.component.html',
-  styleUrls: ['./alert-modal.component.scss']
+  template: `
+    <div class="scrollbar">
+    <h1>{{data.title}}</h1>
+    <p> {{data.message}}</p>
+    <div class="action-container">
+      <button appButton type="primary" (click)="dialogRef.close(true)">
+        {{data.btnText}}
+      </button>
+    </div>
+  </div>
+  `,
+  styleUrls: ['./standard-dialog-default.scss']
 })
 export class AlertModalComponent {
 

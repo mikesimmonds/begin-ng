@@ -10,8 +10,24 @@ export interface PromptModalOptions {
 }
 
 @Component({
-  templateUrl: './prompt-modal.component.html',
-  styleUrls: ['./prompt-modal.component.scss']
+  template: `
+  <div class="inner">
+  <div class="scrollbar">
+    <h1>{{data.title}}</h1>
+    <p> {{data.message}}</p>
+    <input type="text" [placeholder]="data.placeholder" #textInput>
+    <div class="action-container">
+      <p class="button--3" (click)="dialogRef.close(textInput.value)">
+        {{data.trueBtnText}}
+      </p>
+      <p class="button--3" (click)="dialogRef.close()">
+        {{data.falseBtnText}}
+      </p>
+    </div>
+  </div>
+</div>
+  `,
+  styleUrls: ['./standard-dialog-default.scss']
 })
 export class PromptModalComponent {
 

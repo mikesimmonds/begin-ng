@@ -1,0 +1,18 @@
+/**
+This stylesheet is the base stylesheet for all of the 'standard' dialogs: alert, prompt and confirm.
+It is imported into the styleUrl array for each component.
+*/
+@import "breakpoints";
+@import "variables";
+
+.scrollbar {
+  max-height: calc(90vh - 6em);
+}
+.action-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+  .button--3 {
+    min-width: 170px;
+  }
+}

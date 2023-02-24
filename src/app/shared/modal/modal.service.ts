@@ -1,48 +1,43 @@
-import {
-  CdkDialogContainer,
-  Dialog,
-  DialogConfig,
-  DialogRef,
-} from '@angular/cdk/dialog';
-import { BasePortalOutlet, ComponentType } from '@angular/cdk/portal';
+import { Dialog, DialogConfig, DialogRef } from '@angular/cdk/dialog';
+import { ComponentType } from '@angular/cdk/portal';
 import { Injectable, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   AlertModalComponent,
   AlertModalOptions,
-} from './alert-modal/alert-modal.component';
+} from './standard-dialogs/alert-modal.component';
 import {
   ConfirmModalComponent,
   ConfirmModalOptions,
-} from './confirm-modal/confirm-modal.component';
-import { PromptModalComponent } from './prompt-modal/prompt-modal.component';
+} from './standard-dialogs/confirm-modal.component';
+import { PromptModalComponent } from './standard-dialogs/prompt-modal.component';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ModalService {
-  baseConfig: DialogConfig<unknown, any> = {
-    panelClass: ['modal-base'], // Must be in global scope :(
-  };
-
   constructor(public ngDialog: Dialog) {}
-/**
- * Opens a custom dialog with the Component or #TemplateReference provided.
- * Returns the DialogRef which gives acess to the underlying component instance.
- * Use DialogRef.closed to get an Observable of the result.
- *
- * @param {(ComponentType<any> | TemplateRef<any>)} modal
- * @param {DialogConfig} [configOverride]
- * @return {*}  {DialogRef}
- * @memberof ModalService
- */
-open(
-    modal: ComponentType<any> | TemplateRef<any>,
+  /**
+   * Opens a custom dialog with the Component or #TemplateReference provided.
+   * Returns the DialogRef which gives access to the underlying component
+   * instance.
+   * If a #templateRef is used, the *dialogRef directive exposes the modal
+   * dialogRef, which can be used to close the modal
+   * (see dialogRef.directive.ts for details)
+   *
+   * Use DialogRef.closed to get an Observable of the result.
+   *
+   * @param {(ComponentType<any> | TemplateRef<any>)} modalContent
+   * @param {DialogConfig} [configOverride]
+   * @return {*}  {DialogRef}
+   * @memberof ModalService
+   */
+  open(
+    modalContent: ComponentType<any> | TemplateRef<any>,
     configOverride: DialogConfig<unknown, any>
-  ): DialogRef {
-    const config = { ...this.baseConfig, ...configOverride };
-    return this.ngDialog.open(modal, config);
+  ): DialogRef<any, any> {
+    const config = { ...configOverride };
+    return this.ngDialog.open(modalContent, config);
   }
+
   /**
    * Opens an alert dialog similar to window.alert().
    * Returns an Observable.
@@ -51,8 +46,7 @@ open(
    * @memberof ModalService
    */
   alert(data: AlertModalOptions): Observable<true | undefined> {
-    console.log(`this.alert: `);
-    const config = { ...this.baseConfig, data };
+    const config = { data: data };
     return this.ngDialog.open<true | undefined>(AlertModalComponent, config)
       .closed;
   }
@@ -65,14 +59,14 @@ open(
    * @memberof ModalService
    */
   confirm(data: ConfirmModalOptions): Observable<boolean | null | undefined> {
-    const config = { ...this.baseConfig, ...{ data: data } };
+    const config = { data: data };
     return this.ngDialog.open<boolean | null>(ConfirmModalComponent, config)
       .closed;
   }
 
   prompt(data: ConfirmModalOptions): Observable<string | null | undefined> {
-    const config = { ...this.baseConfig, ...{ data: data } };
+    const config = { data: data };
     return this.ngDialog.open<string | null>(PromptModalComponent, config)
       .closed;
-   }
+  }
 }

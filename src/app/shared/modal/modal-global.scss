@@ -1,7 +1,7 @@
-/* These styles must be imported in the global scope to style the wrapper components. This can be in the rott styles.scss or added to the styles array in angular.json. This code was shamelessly copied from the Angular Material sourcecode (deeppurple-amber.css) to remove the requirement to install all the Angular Material styles into the project.
+/* These styles must be imported in the global scope to style the wrapper components. This can be in the root styles.scss or added to the styles array in angular.json. This code was shamelessly copied from the Angular Material sourcecode (deeppurple-amber.css). It saves installing Angular Material into the project.
+
+Ideally, this would be handled by the CustomCdkOverlayContainer.
 */
-
-
 
 .cdk-overlay-container,
 .cdk-global-overlay-wrapper {
@@ -20,7 +20,7 @@
 }
 .cdk-global-overlay-wrapper {
   display: flex;
-  position: absolute;
+  position: fixed;
   z-index: 1000;
 }
 .cdk-overlay-pane {
@@ -46,6 +46,7 @@
 }
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
   opacity: 1;
+  position: fixed;
 }
 .cdk-high-contrast-active .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
   opacity: 0.6;

@@ -9,8 +9,22 @@ export interface ConfirmModalOptions {
 }
 
 @Component({
-  templateUrl: './confirm-modal.component.html',
-  styleUrls: ['./confirm-modal.component.scss']
+  template: `
+  <div class="inner">
+  <div class="scrollbar">
+    <h1>{{data.title}}</h1>
+    <p> {{data.message}}</p>
+    <div class="action-container">
+      <p class="button--3" (click)="dialogRef.close(true)">
+        {{data.trueBtnText}}
+      </p>
+      <p class="button--3" (click)="dialogRef.close(false)">
+        {{data.falseBtnText}}
+      </p>
+    </div>
+  </div>
+</div>`,
+  styleUrls: ['./standard-dialog-default.scss']
 })
 export class ConfirmModalComponent {
 
